@@ -5,7 +5,8 @@
     { "hdr": "715", "type": "airbag" },
     { "hdr": "746", "type": "hvac" },
     { "hdr": "767", "type": "telematics" },
-    { "hdr": "7E1", "type": "transmission" }
+    { "hdr": "7E1", "type": "transmission" },
+    { "hdr": "7E5", "type": "battery" }
   ],
   "commands": [
 { "hdr": "70B", "rax": "775", "fcm1": true, "dbg": true, "cmd": {"22": "18A0"}, "freq": 5,
@@ -251,7 +252,7 @@
   "signals": [
     {"id": "SEAT_HVBAT_ENERGY",    "path": "Battery", "fmt": {           "len": 16, "max": 1638,  "div": 40, "unit": "kilowattHours" }, "name": "High voltage battery energy information"},
     {"id": "SEAT_NV_ENERGY",       "path": "Engine",  "fmt": {"bix": 16, "len": 8,  "max": 12.75, "div": 20, "unit": "kilowattHours" }, "name": "NV energy requirement"},
-    {"id": "SEAT_HIGH_V_EM_HVBAT", "path": "Battery", "fmt": {"bix": 24, "len": 16, "max": 3276,  "div": 20, "unit": "kilowattHours" }, "name": "High voltage battery energy information"}
+    {"id": "SEAT_HIGH_V_EM_HVBAT", "path": "Battery", "fmt": {"bix": 24, "len": 16, "max": 3276,  "div": 20, "unit": "kilowattHours" }, "name": "Electric machine high-voltage battery energy information"}
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "15D1"}, "freq": 5,
   "signals": [
@@ -275,8 +276,9 @@
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2A07"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_BAT_V_2A07", "path": "Battery", "fmt": { "len": 16, "max": 69.535, "min": 4, "div": 1000, "add": 4, "unit": "volts" }, "name": "Battery voltage"},
-    {"id": "SEAT_SSB_V",      "path": "Battery", "fmt": { "len": 16, "max": 69.53,  "min": 4, "div": 1000, "add": 4, "unit": "volts" }, "name": "Start/stop battery voltage", "suggestedMetric": "starterBatteryVoltage"}
+    {"id": "SEAT_BAT_V_2A07",      "path": "Battery", "fmt": { "len": 16, "max": 69.535, "min": 4, "div": 1000, "add": 4, "unit": "volts" }, "name": "Battery voltage"},
+    {"id": "SEAT_SSB_V",           "path": "Battery", "fmt": { "len": 16, "max": 69.53,  "min": 4, "div": 1000, "add": 4, "unit": "volts" }, "name": "Start/stop battery voltage", "suggestedMetric": "starterBatteryVoltage"},
+    {"id": "SEAT_TRON_BAT_V_2A07", "path": "Battery", "fmt": { "len": 16, "max": 69.535, "min": 4, "div": 1000, "add": 4, "unit": "volts" }, "name": "Battery voltage",            "suggestedMetric": "starterBatteryVoltage"}
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2A08"}, "freq": 1,
   "signals": [
@@ -284,9 +286,10 @@
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2A09"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_BAT_I",     "path": "Battery", "fmt": { "len": 32, "max": 1000,               "min": -1000,        "div": 1000, "sign": true, "unit": "amps" }, "name": "Battery current"},
-    {"id": "SEAT_SSB_C",     "path": "Battery", "fmt": { "len": 32, "max": 2147483,            "min": -2147483,     "div": 1000, "sign": true, "unit": "amps" }, "name": "Start/stop battery current"},
-    {"id": "SEAT_MQB_BAT_I", "path": "Battery", "fmt": { "len": 32, "max": 2147483.6469999999, "min": -2147483.648, "div": 1000, "sign": true, "unit": "amps" }, "name": "Battery current"}
+    {"id": "SEAT_BAT_I",      "path": "Battery", "fmt": { "len": 32, "max": 1000,               "min": -1000,        "div": 1000, "sign": true, "unit": "amps" }, "name": "Battery current"},
+    {"id": "SEAT_SSB_C",      "path": "Battery", "fmt": { "len": 32, "max": 2147483,            "min": -2147483,     "div": 1000, "sign": true, "unit": "amps" }, "name": "Start/stop battery current"},
+    {"id": "SEAT_MQB_BAT_I",  "path": "Battery", "fmt": { "len": 32, "max": 2147483.6469999999, "min": -2147483.648, "div": 1000, "sign": true, "unit": "amps" }, "name": "Battery current"},
+    {"id": "SEAT_TRON_BAT_I", "path": "Battery", "fmt": { "len": 32, "max": 2147483,            "min": -2147483.648, "div": 1000, "sign": true, "unit": "amps" }, "name": "Battery current"}
   ]},
 { "hdr": "710", "rax": "77A", "dbg": true, "cmd": {"22": "2A0A"}, "freq": 30,
   "signals": [
@@ -356,7 +359,9 @@
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2A61"}, "freq": 1,
   "signals": [
     {"id": "SEAT_SSB_TOTAL_CHARGE",    "path": "Battery", "fmt": {           "len": 32, "max": 429496729.5, "div": 10, "unit": "ampereHours" }, "name": "Start/stop battery total charge"},
-    {"id": "SEAT_SSB_TOTAL_DISCHARGE", "path": "Battery", "fmt": {"bix": 32, "len": 32, "max": 429496729.5, "div": 10, "unit": "ampereHours" }, "name": "Start/stop battery total discharge"}
+    {"id": "SEAT_MQB_BAT_TOT_CHG",     "path": "Battery", "fmt": {           "len": 32, "max": 100,         "div": 10, "unit": "ampereHours" }, "name": "Start/stop battery total charge"},
+    {"id": "SEAT_SSB_TOTAL_DISCHARGE", "path": "Battery", "fmt": {"bix": 32, "len": 32, "max": 429496729.5, "div": 10, "unit": "ampereHours" }, "name": "Start/stop battery total discharge"},
+    {"id": "SEAT_MQB_BAT_TOT_DIS",     "path": "Battery", "fmt": {"bix": 32, "len": 32, "max": 100,         "div": 10, "unit": "ampereHours" }, "name": "Start/stop battery total discharge"}
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2AB2"}, "freq": 86400,
   "signals": [
@@ -390,8 +395,8 @@
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2AB8"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_HVBAT_KWH",       "path": "Battery", "fmt": {           "len": 32, "max": 3276,               "div": 1310770, "unit": "kilowattHours" }, "name": "HV battery energy",         "description": "Energy stored in the high voltage battery"},
-    {"id": "SEAT_HVBAT_E_CONTENT", "path": "Battery", "fmt": {"bix": 16, "len": 16, "max": 1638.37, "mul": 25, "div": 1000,    "unit": "kilowattHours" }, "name": "HV battery energy content", "description": "Energy stored in the high voltage battery"}
+    {"id": "SEAT_HVBAT_KWH",       "path": "Battery", "fmt": { "len": 32, "max": 3276,               "div": 1310770, "unit": "kilowattHours" }, "name": "HV battery energy",         "description": "Energy stored in the high voltage battery"},
+    {"id": "SEAT_HVBAT_E_CONTENT", "path": "Battery", "fmt": { "len": 16, "max": 1638.37, "mul": 25, "div": 1000,    "unit": "kilowattHours" }, "name": "HV battery energy content", "description": "Energy stored in the high voltage battery"}
   ]},
 { "hdr": "710", "rax": "77A", "fcm1": true, "dbg": true, "cmd": {"22": "2AF7"}, "freq": 1,
   "signals": [
@@ -439,23 +444,27 @@
   ]},
 { "hdr": "713", "rax": "77D", "fcm1": true, "dbg": true, "cmd": {"22": "1800"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_FL_VSS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
-    {"id": "SEAT_FL_VSS",    "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Front left wheel speed"}
+    {"id": "SEAT_FL_VSS_V2",     "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
+    {"id": "SEAT_FL_VSS",        "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Front left wheel speed"},
+    {"id": "SEAT_FL_VSS_V2_RAW", "path": "Movement", "fmt": { "len": 16, "max": 65535,             "unit": "scalar"            }, "name": "Front left wheel speed, raw count"}
   ]},
 { "hdr": "713", "rax": "77D", "fcm1": true, "dbg": true, "cmd": {"22": "1801"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_FR_VSS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
-    {"id": "SEAT_FR_VSS",    "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Front right wheel speed"}
+    {"id": "SEAT_FR_VSS_V2",     "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
+    {"id": "SEAT_FR_VSS",        "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Front right wheel speed"},
+    {"id": "SEAT_FR_VSS_V2_RAW", "path": "Movement", "fmt": { "len": 16, "max": 65535,             "unit": "scalar"            }, "name": "Front right wheel speed, raw count"}
   ]},
 { "hdr": "713", "rax": "77D", "fcm1": true, "dbg": true, "cmd": {"22": "1802"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_RL_VSS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"},
-    {"id": "SEAT_RL_VSS",    "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Rear left wheel speed"}
+    {"id": "SEAT_RL_VSS_V2",     "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"},
+    {"id": "SEAT_RL_VSS",        "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Rear left wheel speed"},
+    {"id": "SEAT_RL_VSS_V2_RAW", "path": "Movement", "fmt": { "len": 16, "max": 65535,             "unit": "scalar"            }, "name": "Rear left wheel speed, raw count"}
   ]},
 { "hdr": "713", "rax": "77D", "fcm1": true, "dbg": true, "cmd": {"22": "1803"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_RR_VSS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"},
-    {"id": "SEAT_RR_VSS",    "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Rear right wheel speed"}
+    {"id": "SEAT_RR_VSS_V2",     "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"},
+    {"id": "SEAT_RR_VSS",        "path": "Movement", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers"        }, "name": "Rear right wheel speed"},
+    {"id": "SEAT_RR_VSS_V2_RAW", "path": "Movement", "fmt": { "len": 16, "max": 65535,             "unit": "scalar"            }, "name": "Rear right wheel speed, raw count"}
   ]},
 { "hdr": "713", "rax": "77D", "fcm1": true, "dbg": true, "cmd": {"22": "1804"}, "freq": 0.25,
   "signals": [
@@ -611,7 +620,8 @@
   ]},
 { "hdr": "714", "rax": "77E", "fcm1": true, "dbg": true, "cmd": {"22": "22B8"}, "freq": 30,
   "signals": [
-    {"id": "SEAT_ODO_MILEAGE_HR", "path": "Trips", "fmt": { "len": 32, "max": 4294967, "div": 1000, "unit": "kilometers" }, "name": "Odometer, mileage, HR"}
+    {"id": "SEAT_ODO_MILEAGE_HR",      "path": "Trips", "fmt": { "len": 32, "max": 4294967, "div": 1000, "unit": "kilometers" }, "name": "Odometer, mileage, HR"},
+    {"id": "SEAT_TRON_ODO_MILEAGE_HR", "path": "Trips", "fmt": { "len": 32, "max": 4294967, "div": 1000, "unit": "kilometers" }, "name": "Odometer, mileage, HR", "suggestedMetric": "odometer"}
   ]},
 { "hdr": "714", "rax": "77E", "dbg": true, "cmd": {"22": "22E0"}, "freq": 1,
   "signals": [
@@ -896,36 +906,39 @@
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2606"}, "freq": 2,
   "signals": [
-    {"id": "SEAT_CLIMATE_RAD_FAN_ACT_DUTY", "path": "Engine",  "fmt": {           "len": 8,  "max": 100,    "mul": 0.4,            "unit": "percent" }, "name": "Radiator fan actual duty"},
-    {"id": "SEAT_HVAC_FAN1_ACT",            "path": "Climate", "fmt": {           "len": 16, "max": 6553.5,             "div": 10, "unit": "percent" }, "name": "Radiator fan actual value #1"},
-    {"id": "SEAT_HVAC_FAN2_ACT",            "path": "Climate", "fmt": {"bix": 16, "len": 16, "max": 6553.5,             "div": 10, "unit": "percent" }, "name": "Radiator fan actual value #2"}
+    {"id": "SEAT_CLIMATE_RAD_FAN_ACT_DUTY",      "path": "Engine",  "fmt": {           "len": 8,  "max": 100,    "mul": 0.4,             "unit": "percent" }, "name": "Radiator fan actual duty"},
+    {"id": "SEAT_HVAC_FAN1_ACT",                 "path": "Climate", "fmt": {           "len": 16, "max": 6553.5,             "div": 10,  "unit": "percent" }, "name": "Radiator fan actual value #1"},
+    {"id": "SEAT_TRON_CLIMATE_RAD_FAN_ACT_DUTY", "path": "Engine",  "fmt": {           "len": 8,  "max": 100,                "div": 2.5, "unit": "percent" }, "name": "Radiator fan actual duty"},
+    {"id": "SEAT_HVAC_FAN2_ACT",                 "path": "Climate", "fmt": {"bix": 16, "len": 16, "max": 6553.5,             "div": 10,  "unit": "percent" }, "name": "Radiator fan actual value #2"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2607"}, "freq": 2,
   "signals": [
-    {"id": "SEAT_CLIMATE_RAD_FAN_CMD_DUTY", "path": "Engine",  "fmt": { "len": 8,  "max": 100,    "mul": 0.4,            "unit": "percent" }, "name": "Radiator fan commanded duty"},
-    {"id": "SEAT_HVAC_FAN_CMD",             "path": "Climate", "fmt": { "len": 16, "max": 6553.5,             "div": 10, "unit": "percent" }, "name": "Radiator fan commanded value"}
+    {"id": "SEAT_CLIMATE_RAD_FAN_CMD_DUTY",      "path": "Engine",  "fmt": { "len": 8,  "max": 100,    "mul": 0.4,             "unit": "percent" }, "name": "Radiator fan commanded duty"},
+    {"id": "SEAT_HVAC_FAN_CMD",                  "path": "Climate", "fmt": { "len": 16, "max": 6553.5,             "div": 10,  "unit": "percent" }, "name": "Radiator fan commanded value"},
+    {"id": "SEAT_TRON_CLIMATE_RAD_FAN_CMD_DUTY", "path": "Engine",  "fmt": { "len": 8,  "max": 100,                "div": 2.5, "unit": "percent" }, "name": "Radiator fan commanded duty"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2609"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_AAT_746",        "path": "Climate", "fmt": { "len": 8,  "max": 77.5,   "min": -50,                 "div": 2,  "add": -50,               "unit": "celsius" }, "name": "Outside temperature"},
-    {"id": "SEAT_HVAC_OUTSIDE_T", "path": "Climate", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8,             "div": 10,             "sign": true, "unit": "celsius" }, "name": "Outside temperature"},
-    {"id": "SEAT_PQ35_OUT_T",     "path": "Engine",  "fmt": { "len": 8,  "max": 63.5,   "min": -64,                 "div": 2,              "sign": true, "unit": "celsius" }, "name": "Outside temperature"},
-    {"id": "SEAT_AAT_V2",         "path": "Climate", "fmt": { "len": 8,  "max": 63.5,   "min": -64,     "mul": 0.5,                        "sign": true, "unit": "celsius" }, "name": "Outside temperature"}
+    {"id": "SEAT_AAT_746",        "path": "Climate", "fmt": { "len": 8,  "max": 77.5,   "min": -50,     "div": 2,  "add": -50,                               "unit": "celsius" }, "name": "Outside temperature"},
+    {"id": "SEAT_HVAC_OUTSIDE_T", "path": "Climate", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10,             "sign": true,                 "unit": "celsius" }, "name": "Outside temperature"},
+    {"id": "SEAT_AAT_V2",         "path": "Climate", "fmt": { "len": 8,  "max": 63.5,   "min": -64,     "div": 2,              "sign": true,                 "unit": "celsius" }, "name": "Outside temperature"},
+    {"id": "SEAT_TRON_AAT",       "path": "Climate", "fmt": { "len": 16, "max": 100,    "min": -3276.8, "div": 10,             "sign": true, "nullmax": 100, "unit": "celsius" }, "name": "Outside temperature"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "260A"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_OUTSIDE_T_SYSTEM", "path": "Engine",  "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10,             "sign": true, "unit": "celsius" }, "name": "Outside temperature, system calculated"},
-    {"id": "SEAT_AAT_CABIN",        "path": "Climate", "fmt": { "len": 8,  "max": 77.5,   "min": -50,     "div": 2,  "add": -50,               "unit": "celsius" }, "name": "Outside temperature, from cabin sensor"}
+    {"id": "SEAT_OUTSIDE_T_SYSTEM",      "path": "Engine",  "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10,             "sign": true, "unit": "celsius" }, "name": "Outside temperature, system calculated"},
+    {"id": "SEAT_AAT_CABIN",             "path": "Climate", "fmt": { "len": 8,  "max": 77.5,   "min": -50,     "div": 2,  "add": -50,               "unit": "celsius" }, "name": "Outside temperature, from cabin sensor"},
+    {"id": "SEAT_TRON_OUTSIDE_T_SYSTEM", "path": "Engine",  "fmt": { "len": 8,  "max": 63.5,   "min": -64,     "div": 2,              "sign": true, "unit": "celsius" }, "name": "Outside temperature, system calculated"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "260C"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_CLIMATE_FR_L_DEFL_T",    "path": "Engine",  "fmt": { "len": 8, "max": 84.915, "mul": 0.333,           "unit": "celsius" }, "name": "Front left deflector temperature"},
-    {"id": "SEAT_FRONT_LEFT_DEFLECTOR_T", "path": "Climate", "fmt": { "len": 8, "max": 84.915,               "div": 3, "unit": "celsius" }, "name": "Front left deflector temperature"}
+    {"id": "SEAT_CLIMATE_FR_L_DEFL_T",      "path": "Engine", "fmt": { "len": 8, "max": 84.915, "mul": 0.333,           "unit": "celsius" }, "name": "Front left deflector temperature"},
+    {"id": "SEAT_TRON_CLIMATE_FR_L_DEFL_T", "path": "Engine", "fmt": { "len": 8, "max": 84.915,               "div": 3, "unit": "celsius" }, "name": "Front left deflector temperature"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "260D"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_CLIMATE_FR_R_DEFL_T",     "path": "Engine",  "fmt": { "len": 8, "max": 84.915, "mul": 0.333,           "unit": "celsius" }, "name": "Front right deflector temperature"},
-    {"id": "SEAT_FRONT_RIGHT_DEFLECTOR_T", "path": "Climate", "fmt": { "len": 8, "max": 84.915,               "div": 3, "unit": "celsius" }, "name": "Front right deflector temperature"}
+    {"id": "SEAT_CLIMATE_FR_R_DEFL_T",      "path": "Engine", "fmt": { "len": 8, "max": 84.915, "mul": 0.333,           "unit": "celsius" }, "name": "Front right deflector temperature"},
+    {"id": "SEAT_TRON_CLIMATE_FR_R_DEFL_T", "path": "Engine", "fmt": { "len": 8, "max": 84.915,               "div": 3, "unit": "celsius" }, "name": "Front right deflector temperature"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2611"}, "freq": 5,
   "signals": [
@@ -934,13 +947,14 @@
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2612"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_CLIMATE_T_AFTER_EVAP", "path": "Engine",  "fmt": { "len": 8,  "max": 42.291, "min": -42.624, "mul": 0.333,            "sign": true, "unit": "celsius" }, "name": "Temperature after evaporator"},
-    {"id": "SEAT_HVAC_EVAP_T",          "path": "Climate", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8,               "div": 10, "sign": true, "unit": "celsius" }, "name": "Evaporator output temperature"},
-    {"id": "SEAT_T_AFTER_EVAPORATOR",   "path": "Climate", "fmt": { "len": 8,  "max": 42.291, "min": -42.624,               "div": 3,  "sign": true, "unit": "celsius" }, "name": "Temperature after evaporator"}
+    {"id": "SEAT_CLIMATE_T_AFTER_EVAP",      "path": "Engine",  "fmt": { "len": 8,  "max": 42.291, "min": -42.624, "mul": 0.333,            "sign": true, "unit": "celsius" }, "name": "Temperature after evaporator"},
+    {"id": "SEAT_HVAC_EVAP_T",               "path": "Climate", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8,               "div": 10, "sign": true, "unit": "celsius" }, "name": "Evaporator output temperature"},
+    {"id": "SEAT_TRON_CLIMATE_T_AFTER_EVAP", "path": "Engine",  "fmt": { "len": 8,  "max": 42.291, "min": -42.624,               "div": 3,  "sign": true, "unit": "celsius" }, "name": "Temperature after evaporator"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "2613"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_CABIN_T", "path": "Engine", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10, "sign": true, "unit": "celsius" }, "name": "Cabin temperature"}
+    {"id": "SEAT_CABIN_T",    "path": "Engine", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10,  "sign": true, "unit": "celsius" }, "name": "Cabin temperature"},
+    {"id": "SEAT_C7_CABIN_T", "path": "Engine", "fmt": { "len": 16, "max": 127.99, "min": -128,    "div": 256, "sign": true, "unit": "celsius" }, "name": "Cabin temperature"}
   ]},
 { "hdr": "746", "rax": "7B0", "fcm1": true, "dbg": true, "cmd": {"22": "261E"}, "freq": 1,
   "signals": [
@@ -1031,7 +1045,7 @@
     {"id": "SEAT_ECALL_BAT_CRIT",              "path": "Battery", "fmt": {          "len": 8, "max": 100, "unit": "percent" }, "name": "Emergency call battery critical status"},
     {"id": "SEAT_ECALL_BATTERY_CHARGE_STATUS", "path": "Battery", "fmt": {          "len": 8, "max": 100, "unit": "scalar"  }, "name": "Ecall battery charge status"},
     {"id": "SEAT_ECALL_BAT_LVL",               "path": "Battery", "fmt": {"bix": 8, "len": 8, "max": 100, "unit": "percent" }, "name": "Emergency call battery level"},
-    {"id": "SEAT_ECALL_STATUS", "path": "Battery", "name": "eCall battery status", "fmt": {"len": 8, "map": {
+    {"id": "SEAT_ECALL_STATUS", "path": "Battery", "name": "ECall battery status", "fmt": {"len": 8, "map": {
           "1": { "description": "CRITICAL", "value": "CRITICAL" },
           "2": { "description": "NORMAL",   "value": "NORMAL" }
         }}
@@ -1124,8 +1138,10 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "028D"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_ENG_CTRL_MODULE_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1,                    "unit": "celsius" }, "name": "Engine control module temperature"},
-    {"id": "SEAT_ECU_TEMP",          "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "nullmin": -273.1, "unit": "celsius" }, "name": "Control module temperature"}
+    {"id": "SEAT_ENG_CTRL_MODULE_T",      "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1,  "div": 10, "add": -273.1,                                  "unit": "celsius" }, "name": "Engine control module temperature"},
+    {"id": "SEAT_ECU_TEMP",               "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1,  "div": 10, "add": -273.1,               "nullmin": -273.1, "unit": "celsius" }, "name": "Control module temperature"},
+    {"id": "SEAT_ECU_TEMP_KELVIN",        "path": "Engine", "fmt": { "len": 16, "max": 150,    "min": -40,     "div": 10, "add": -273.1, "sign": true,                    "unit": "celsius" }, "name": "Control module temperature"},
+    {"id": "SEAT_TRON_ENG_CTRL_MODULE_T", "path": "Engine", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10,                "sign": true,                    "unit": "celsius" }, "name": "Control module temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0802"}, "freq": 1,
   "signals": [
@@ -1591,7 +1607,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "10F9"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_PQ35_DPF_OUT_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Diesel particulate filter outlet temperature"}
+    {"id": "SEAT_PQ35_DPF_OUT_T",  "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Diesel particulate filter outlet temperature"},
+    {"id": "SEAT_EARLY_DPF_OUT_T", "path": "Engine", "fmt": { "len": 16, "max": 1200,                  "div": 10,                "unit": "celsius" }, "name": "Diesel particulate filter outlet temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "10FA"}, "freq": 1,
   "signals": [
@@ -1737,8 +1754,8 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "112D"}, "freq": 1,
   "signals": [
     {"id": "SEAT_SPARK_EFFICIENCY_DEV_V2", "path": "Engine", "fmt": { "len": 8,  "max": 100,                    "mul": 78.1,  "div": 100,                     "unit": "percent" }, "name": "Spark efficiency deviation at part load"},
-    {"id": "SEAT_SPARK_EFF_DEV",           "path": "Engine", "fmt": { "len": 8,  "max": 199.14,                 "mul": 78.1,  "div": 100,                     "unit": "percent" }, "name": "Spark efficiency deviation at part load"},
-    {"id": "SEAT_SEG_AD_MMV_ER_1",         "path": "Engine", "fmt": { "len": 16, "max": 7.8123, "min": -7.8125, "mul": 78123, "div": 327670000, "sign": true, "unit": "percent" }, "name": "SEG_AD_MMV_ER, 1"}
+    {"id": "SEAT_SEG_AD_MMV_ER_1",         "path": "Engine", "fmt": { "len": 16, "max": 7.8123, "min": -7.8125, "mul": 78123, "div": 327670000, "sign": true, "unit": "percent" }, "name": "SEG_AD_MMV_ER, 1"},
+    {"id": "SEAT_SPARK_EFF_DEV",           "path": "Engine", "fmt": { "len": 8,  "max": 199.14,                 "mul": 78.1,  "div": 100,                     "unit": "percent" }, "name": "Spark efficiency deviation at part load"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "112E"}, "freq": 1,
   "signals": [
@@ -1773,7 +1790,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1135"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_COOLANT_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Coolant temperature at radiator outlet"}
+    {"id": "SEAT_COOLANT_T",       "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Coolant temperature at radiator outlet"},
+    {"id": "SEAT_EARLY_COOLANT_T", "path": "Engine", "fmt": { "len": 16, "max": 300,                   "div": 10,                "unit": "celsius" }, "name": "Coolant temperature at radiator outlet"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1136"}, "freq": 1,
   "signals": [
@@ -1929,8 +1947,9 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1164"}, "freq": 30,
   "signals": [
-    {"id": "SEAT_PQ35_SRV_REGEN_DUR", "path": "Battery", "fmt": { "len": 32, "max": 715827, "mul": 0.0001666667,             "unit": "minutes" }, "name": "Service regeneration current duration"},
-    {"id": "SEAT_HVBAT_SOC_DISP",     "path": "Battery", "fmt": { "len": 16, "max": 100,                         "div": 100, "unit": "percent" }, "name": "HV battery charge, displayed",          "suggestedMetric": "stateOfCharge"}
+    {"id": "SEAT_PQ35_SRV_REGEN_DUR",   "path": "Battery", "fmt": { "len": 32, "max": 715827, "mul": 0.0001666667,             "unit": "minutes" }, "name": "Service regeneration current duration"},
+    {"id": "SEAT_HVBAT_SOC_DISP",       "path": "Battery", "fmt": { "len": 16, "max": 100,                         "div": 100, "unit": "percent" }, "name": "HV battery charge, displayed",                          "suggestedMetric": "stateOfCharge"},
+    {"id": "SEAT_SRV_REGEN_VALUE_2012", "path": "Battery", "fmt": { "len": 16, "max": 65535,                                   "unit": "scalar"  }, "name": "Service regeneration value, two-byte reply, raw count"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1169"}, "freq": 1,
   "signals": [
@@ -2046,7 +2065,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11B2"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_PQ35_DPF_IN_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Diesel particulate filter inlet temperature"}
+    {"id": "SEAT_PQ35_DPF_IN_T",    "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Diesel particulate filter inlet temperature"},
+    {"id": "SEAT_EXH_GAS_T_SENS_3", "path": "Engine", "fmt": { "len": 16, "max": 6280,   "min": -273,   "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Exhaust gas temperature sensor 3"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "03", "dbg": true, "cmd": {"22": "11B5"}, "freq": 5,
   "signals": [
@@ -2082,9 +2102,10 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BE"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_PQ35_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1,                                 "unit": "celsius" }, "name": "Oil temperature variant"},
-    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 65535,                                                                           "unit": "scalar"  }, "name": "Engine oil temperature",  "description": "Scaling is unknown, needs further validation."},
-    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 500,    "min": -40,    "div": 10, "add": -273.1, "nullmin": -40, "nullmax": 500, "unit": "celsius" }, "name": "Engine oil temperature",  "suggestedMetric": "engineOilTemperature"}
+    {"id": "SEAT_PQ35_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1,                                               "unit": "celsius" }, "name": "Oil temperature variant"},
+    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 65535,                                                                                         "unit": "scalar"  }, "name": "Engine oil temperature",  "description": "Scaling is unknown, needs further validation."},
+    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 500,    "min": -40,    "div": 10, "add": -273.1,               "nullmin": -40, "nullmax": 500, "unit": "celsius" }, "name": "Engine oil temperature",  "suggestedMetric": "engineOilTemperature"},
+    {"id": "SEAT_PQ46_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 300,    "min": -40,    "div": 10,                "sign": true,                                 "unit": "celsius" }, "name": "Oil temperature variant", "suggestedMetric": "engineOilTemperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BF"}, "freq": 1,
   "signals": [
@@ -2200,7 +2221,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11F1"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_PQ35_TRANS_IN_SPD", "path": "Movement", "fmt": { "len": 16, "max": 16383.5, "min": -16384, "div": 2, "sign": true, "unit": "rpm" }, "name": "Transmission input shaft speed"}
+    {"id": "SEAT_PQ35_TRANS_IN_SPD", "path": "Movement", "fmt": { "len": 16, "max": 16383.5, "min": -16384, "div": 2, "sign": true,                   "unit": "rpm" }, "name": "Transmission input shaft speed"},
+    {"id": "SEAT_TRANS_IN_SPD",      "path": "Movement", "fmt": { "len": 16, "max": 10000,   "min": -16384, "div": 2, "sign": true, "nullmax": 10000, "unit": "rpm" }, "name": "Transmission input shaft speed"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11F2"}, "freq": 1,
   "signals": [
@@ -2795,7 +2817,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "14BE"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_EXH_GAS_T_SENS_3", "path": "Engine", "fmt": { "len": 16, "max": 6280, "min": -273, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Exhaust gas temperature sensor 3"}
+    {"id": "SEAT_EXH_GAS_T_SENS_3_V2", "path": "Engine", "fmt": { "len": 16, "max": 6280, "min": -273, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Exhaust gas temperature sensor 3"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "14C7"}, "freq": 1,
   "signals": [
@@ -2886,7 +2908,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1515"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_CAT_T_CALC", "path": "Engine", "fmt": { "len": 16, "max": 327625, "min": -50, "mul": 5, "add": -50, "unit": "celsius" }, "name": "Catalyst temperature, calculated"}
+    {"id": "SEAT_CAT_T_CALC", "path": "Engine", "fmt": { "len": 8, "max": 1225, "min": -50, "mul": 5, "add": -50, "unit": "celsius" }, "name": "Catalyst temperature, calculated"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1519"}, "freq": 1,
   "signals": [
@@ -2936,7 +2958,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "03", "dbg": true, "cmd": {"22": "15B8"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_MQB_DPF_DIFF_P_DYNAMIC_OFFSET", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "unknown" }, "name": "Diesel particulate filter diff pressure: dynamic offset"}
+    {"id": "SEAT_MQB_DPF_DIFF_P_DYNAMIC_OFFSET", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768,             "sign": true, "unit": "unknown"     }, "name": "Diesel particulate filter diff pressure: dynamic offset"},
+    {"id": "SEAT_OIL_LEVEL_LAST",                "path": "Engine", "fmt": { "len": 16, "max": 262,                  "div": 250,               "unit": "millimeters" }, "name": "Oil level, last dynamic value"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "15B9"}, "freq": 1,
   "signals": [
@@ -3012,7 +3035,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "162D"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_PQ35_FUEL_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Fuel temperature"}
+    {"id": "SEAT_PQ35_FUEL_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1,                                 "unit": "celsius" }, "name": "Fuel temperature"},
+    {"id": "SEAT_FUEL_T_7E0",  "path": "Engine", "fmt": { "len": 16, "max": 300,    "min": -40,    "div": 10, "add": -273.1, "nullmin": -40, "nullmax": 300, "unit": "celsius" }, "name": "Fuel temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "03", "dbg": true, "cmd": {"22": "162F"}, "freq": 1,
   "signals": [
@@ -3020,7 +3044,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1631"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_PRE_INJ_3_START", "path": "Engine", "fmt": { "len": 16, "max": 719, "min": -720, "mul": 21973, "div": 1000000, "sign": true, "unit": "degrees" }, "name": "Pre-injection 3, start"}
+    {"id": "SEAT_PRE_INJ_3_START", "path": "Engine", "fmt": { "len": 16, "max": 719, "min": -720, "mul": 21973, "div": 1000000, "sign": true, "unit": "degrees" }, "name": "Pilot injection 3 start"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1632"}, "freq": 5,
   "signals": [
@@ -3059,7 +3083,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "166E"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_EXH_GAS_T_S4_B2", "path": "Engine", "fmt": { "len": 16, "max": 6280, "min": -273, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Exhaust gas temperature, sensor 4 bank 2"}
+    {"id": "SEAT_EXH_GAS_T_S4_B2", "path": "Engine", "fmt": { "len": 16, "max": 6280, "min": -273, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Exhaust gas temperature, sensor 4, bank 2"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "166F"}, "freq": 5,
   "signals": [
@@ -3242,11 +3266,11 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1798"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_MQB_CHARGE_AIR_T_TUBROCHARGER_OUTLET_CALCULATED", "path": "Battery", "fmt": { "len": 16, "max": 3003.6, "min": -3549.9, "mul": 1000, "div": 10000, "add": -273.1, "sign": true, "unit": "celsius" }, "name": "Charge air temp at the turbocharger outlet, calculated"}
+    {"id": "SEAT_MQB_CHARGE_AIR_T_TUBROCHARGER_OUTLET_CALCULATED", "path": "Battery", "fmt": { "len": 16, "max": 3003.6, "min": -273.1, "mul": 1000, "div": 10000, "add": -273.1, "sign": true, "nullmin": -273.1, "unit": "celsius" }, "name": "Charge air temp at the turbocharger outlet, calculated"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "179C"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_PQ35_ENGINE_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "unit": "celsius" }, "name": "Oil temp 2"}
+    {"id": "SEAT_PQ35_ENGINE_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1, "div": 10, "add": -273.1, "nullmin": -273.1, "unit": "celsius" }, "name": "Oil temp 2"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "179E"}, "freq": 5,
   "signals": [
@@ -3558,7 +3582,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "203E"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_FUEL_T_7E0", "path": "Fuel", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10, "sign": true, "unit": "celsius" }, "name": "Fuel temperature"}
+    {"id": "SEAT_FUEL_T_7E0_V2", "path": "Fuel", "fmt": { "len": 16, "max": 3276.7, "min": -3276.8, "div": 10, "sign": true, "unit": "celsius" }, "name": "Fuel temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "203F"}, "freq": 0.25,
   "signals": [
@@ -3908,9 +3932,10 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "03", "dbg": true, "cmd": {"22": "295A"}, "freq": 30,
   "signals": [
-    {"id": "SEAT_ODO_MILEAGE_V2", "path": "Trips", "fmt": { "len": 24, "max": 16777215,   "unit": "kilometers" }, "name": "Odometer, mileage"},
-    {"id": "SEAT_ODO_V2",         "path": "Trips", "fmt": { "len": 24, "max": 16777215,   "unit": "kilometers" }, "name": "Odometer",              "suggestedMetric": "odometer"},
-    {"id": "SEAT_ODO_2_V2",       "path": "Trips", "fmt": { "len": 32, "max": 4294967295, "unit": "kilometers" }, "name": "Odometer, alternative", "suggestedMetric": "odometer"}
+    {"id": "SEAT_ODO_MILEAGE_V2", "path": "Trips", "fmt": { "len": 24, "max": 16777215,                       "unit": "kilometers" }, "name": "Odometer, mileage"},
+    {"id": "SEAT_ODO_V2",         "path": "Trips", "fmt": { "len": 24, "max": 16777215,                       "unit": "kilometers" }, "name": "Odometer",              "suggestedMetric": "odometer"},
+    {"id": "SEAT_ODO_2_V2",       "path": "Trips", "fmt": { "len": 32, "max": 4294967295,                     "unit": "kilometers" }, "name": "Odometer, alternative", "suggestedMetric": "odometer"},
+    {"id": "SEAT_ODO_ECM",        "path": "Trips", "fmt": { "len": 24, "max": 1048575,    "nullmax": 1048575, "unit": "kilometers" }, "name": "Odometer",              "suggestedMetric": "odometer"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "295B"}, "freq": 30,
   "signals": [
@@ -4835,23 +4860,27 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1001"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_TIRE_FR_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10, "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
-    {"id": "SEAT_TIRE_FR_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10,                 "unit": "kilometersPerHour" }, "name": "Front right wheel speed"}
+    {"id": "SEAT_TIRE_FR_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,  "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
+    {"id": "SEAT_TIRE_FR_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 655.35, "div": 100,                 "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
+    {"id": "SEAT_TIRE_FR_SPD_V3",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,                  "unit": "kilometersPerHour" }, "name": "Front right wheel speed"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1002"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_TIRE_FL_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10, "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
-    {"id": "SEAT_TIRE_FL_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10,                 "unit": "kilometersPerHour" }, "name": "Front left wheel speed"}
+    {"id": "SEAT_TIRE_FL_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,  "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
+    {"id": "SEAT_TIRE_FL_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 655.35, "div": 100,                 "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
+    {"id": "SEAT_TIRE_FL_SPD_V3",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,                  "unit": "kilometersPerHour" }, "name": "Front left wheel speed"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1003"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_TIRE_RR_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10, "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"},
-    {"id": "SEAT_TIRE_RR_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10,                 "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"}
+    {"id": "SEAT_TIRE_RR_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,  "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"},
+    {"id": "SEAT_TIRE_RR_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 655.35, "div": 100,                 "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"},
+    {"id": "SEAT_TIRE_RR_SPD_V3",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,                  "unit": "kilometersPerHour" }, "name": "Rear right wheel speed"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1004"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_TIRE_RL_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10, "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"},
-    {"id": "SEAT_TIRE_RL_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 255, "div": 10,                 "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"}
+    {"id": "SEAT_TIRE_RL_SPD_V2",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,  "nullmax": 255, "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"},
+    {"id": "SEAT_TIRE_RL_SPD_7E1", "path": "Movement", "fmt": { "len": 16, "max": 655.35, "div": 100,                 "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"},
+    {"id": "SEAT_TIRE_RL_SPD_V3",  "path": "Movement", "fmt": { "len": 16, "max": 255,    "div": 10,                  "unit": "kilometersPerHour" }, "name": "Rear left wheel speed"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1005"}, "freq": 0.25,
   "signals": [
@@ -4863,8 +4892,9 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "100A"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_MQB_DQ250_VEHICLE_SPD_FROM_TRANSMISSION", "path": "Movement", "fmt": { "len": 16, "blsb": true, "max": 3276.7, "div": 10, "sign": true,                  "unit": "kilometersPerHour" },                                                    "name": "Vehicle speed from transmission"},
-    {"id": "SEAT_VSS_TCM_RAW",                             "path": "Movement", "fmt": { "len": 16, "max": 65535,                                         "unit": "scalar" },                          "name": "Vehicle speed from transmission, raw count"}
+    {"id": "SEAT_MQB_DQ250_VEHICLE_SPD_FROM_TRANSMISSION",      "path": "Movement", "fmt": { "len": 16, "blsb": true, "max": 3276.7, "div": 10, "sign": true,                  "unit": "kilometersPerHour" },                                                    "name": "Vehicle speed from transmission"},
+    {"id": "SEAT_VSS_TCM_RAW",                                  "path": "Movement", "fmt": { "len": 16, "max": 65535,                                         "unit": "scalar" },                          "name": "Vehicle speed from transmission, raw count"},
+    {"id": "SEAT_TRON_MQB_DQ250_VEHICLE_SPD_FROM_TRANSMISSION", "path": "Movement", "fmt": { "len": 16, "blsb": true, "max": 3276.7, "div": 10, "sign": true,                  "unit": "kilometersPerHour" },                                                    "name": "Vehicle speed from transmission", "suggestedMetric": "speed"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "100B"}, "freq": 0.25,
   "signals": [
@@ -4991,8 +5021,8 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "103D"}, "freq": 30,
   "signals": [
-    {"id": "SEAT_ODO_3",     "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer"},
-    {"id": "SEAT_ODO_7E1_2", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+    {"id": "SEAT_ODO_3",   "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer"},
+    {"id": "SEAT_ODO_7E1", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1057"}, "freq": 1,
   "signals": [
@@ -5519,7 +5549,8 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "120F"}, "freq": 5,
   "signals": [
-    {"id": "SEAT_MQB_DL382_CLUTCH_0_T_CALCULATED", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Clutch 0 temperature calculated"}
+    {"id": "SEAT_MQB_DL382_CLUTCH_0_T_CALCULATED", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768,            "sign": true, "unit": "celsius" }, "name": "Clutch 0 temperature calculated"},
+    {"id": "SEAT_C7_CLUTCH_0_T_CALCULATED",        "path": "Engine", "fmt": { "len": 16, "max": 600,   "min": -40,    "div": 10, "sign": true, "unit": "celsius" }, "name": "Clutch 0 temperature calculated"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "fcm1": true, "dbg": true, "cmd": {"22": "1259"}, "freq": 5,
   "signals": [
@@ -6051,7 +6082,7 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "pri": "17", "fcm1": true, "dbg": true, "cmd": {"22": "7050"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_SELECTED_GEAR_V2", "path": "Transmission", "fmt": { "len": 8, "max": 253, "min": -2, "add": -2, "unit": "scalar" }, "name": "Selected gear"}
+    {"id": "SEAT_SELECTED_GEAR_V2", "path": "Transmission", "fmt": { "len": 8, "max": 253, "min": -2, "add": -2, "unit": "celsius" }, "name": "Selected gear"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "pri": "17", "fcm1": true, "dbg": true, "cmd": {"22": "7051"}, "freq": 3600,
   "signals": [
@@ -7558,10 +7589,14 @@
 { "hdr": "7E5", "rax": "7ED", "dbg": true, "cmd": {"22": "1E32"}, "freq": 3600,
   "signals": [
     {"id": "SEAT_HVBAT_AH_CHG",        "path": "Battery", "fmt": {           "len": 32, "max": 7818700,                  "div": 549.31642,                "unit": "ampereHours"   }, "name": "HV battery charge throughput"},
+    {"id": "SEAT_HVBAT_TOT_CHG_AH",    "path": "Battery", "fmt": {           "len": 32, "max": 7818749,                  "div": 549.31642,                "unit": "ampereHours"   }, "name": "High voltage battery total charge ah"},
     {"id": "SEAT_HVBAT_AH_DISCHG",     "path": "Battery", "fmt": {"bix": 32, "len": 32, "max": 3909350, "min": -3909350, "div": 549.31642,  "sign": true, "unit": "ampereHours"   }, "name": "HV battery discharge throughput"},
+    {"id": "SEAT_HVBAT_TOT_DCHG_AH",   "path": "Battery", "fmt": {"bix": 32, "len": 32, "max": 7818749,                  "div": 549.31642,                "unit": "ampereHours"   }, "name": "High voltage battery total discharge ah"},
     {"id": "SEAT_HVBAT_KWH_CHG",       "path": "Battery", "fmt": {"bix": 64, "len": 32, "max": 500300,                   "div": 8583.07212,               "unit": "kilowattHours" }, "name": "HV battery energy charged"},
+    {"id": "SEAT_HVBAT_TOT_CHG_KWH",   "path": "Battery", "fmt": {"bix": 64, "len": 32, "max": 500399,                   "div": 8583.07212,               "unit": "kilowattHours" }, "name": "High voltage battery total charge kwh"},
     {"id": "SEAT_HVBAT_KWH_DISCHG",    "path": "Battery", "fmt": {"bix": 96, "len": 32, "max": 250300,  "min": -250300,  "div": 8583.07212, "sign": true, "unit": "kilowattHours" }, "name": "HV battery energy discharged"},
-    {"id": "SEAT_HVBAT_TOT_KWH_DCHRG", "path": "Battery", "fmt": {"bix": 96, "len": 32, "max": 250199,  "min": -250199,  "div": 8583.07212, "sign": true, "unit": "kilowattHours" }, "name": "HV battery total kilowatt hours of discharge"}
+    {"id": "SEAT_HVBAT_TOT_KWH_DCHRG", "path": "Battery", "fmt": {"bix": 96, "len": 32, "max": 250199,  "min": -250199,  "div": 8583.07212, "sign": true, "unit": "kilowattHours" }, "name": "HV battery total kilowatt hours of discharge"},
+    {"id": "SEAT_HVBAT_TOT_DCHG_KWH",  "path": "Battery", "fmt": {"bix": 96, "len": 32, "max": 500399,                   "div": 8583.07212,               "unit": "kilowattHours" }, "name": "High voltage battery total discharge kwh"}
   ]},
 { "hdr": "7E5", "rax": "7ED", "dbg": true, "cmd": {"22": "1E3B"}, "freq": 1,
   "signals": [
@@ -7796,7 +7831,7 @@
   ]},
 { "hdr": "FC00", "dbg": true, "cmd": {"22": "028C"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_SOC", "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 250, "unit": "percent" }, "name": "State of charge", "suggestedMetric": "stateOfCharge"}
+    {"id": "SEAT_SOC_V2", "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 250, "unit": "percent" }, "name": "State of charge", "suggestedMetric": "stateOfCharge"}
   ]},
 { "hdr": "FC00", "rax": "FE0076", "pri": "17", "tst": "76", "dbg": true, "cmd": {"22": "0335"}, "freq": 1,
   "signals": [
@@ -8037,7 +8072,8 @@
   ]},
 { "hdr": "FC00", "rax": "FE0076", "pri": "17", "tst": "76", "dbg": true, "cmd": {"22": "3DEF"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_SOC_FC00", "path": "Battery", "fmt": { "len": 16, "max": 100, "div": 100, "sign": true, "unit": "percent" }, "name": "State of charge", "suggestedMetric": "stateOfCharge"}
+    {"id": "SEAT_SOC_FC00", "path": "Battery", "fmt": { "len": 16, "max": 100, "div": 100, "sign": true, "unit": "percent" }, "name": "State of charge", "suggestedMetric": "stateOfCharge"},
+    {"id": "SEAT_SOC_V3",   "path": "Battery", "fmt": { "len": 16, "max": 100, "div": 100, "sign": true, "unit": "percent" }, "name": "State of charge"}
   ]},
 { "hdr": "FC00", "rax": "FE0076", "pri": "17", "tst": "76", "dbg": true, "cmd": {"22": "3DF8"}, "freq": 1,
   "signals": [
@@ -8103,10 +8139,10 @@
   "signals": [
     {"id": "SEAT_TC_STS", "path": "Engine", "fmt": { "len": 8, "max": 200, "min": -55, "add": -55, "unit": "celsius" }, "name": "Torque converter clutch status"}
   ]},
-{ "hdr": "FC00", "rax": "FE007B", "pri": "17", "tst": "7B", "dbg": true, "cmd": {"22": "028C"}, "freq": 1,
+{ "hdr": "FC00", "rax": "FE007B", "pri": "17", "tst": "7B", "dbg": true, "cmd": {"22": "028C"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_SOC_DISP", "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 20.4, "div": 46,  "add": -6.4, "unit": "percent" }, "name": "State of charge, display", "suggestedMetric": "stateOfCharge"},
-    {"id": "SEAT_SOC_V2",   "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100,  "div": 250,              "unit": "percent" }, "name": "State of charge",          "suggestedMetric": "stateOfCharge"}
+    {"id": "SEAT_SOC",      "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100,  "div": 250,              "unit": "percent" }, "name": "State of charge",          "suggestedMetric": "stateOfCharge"},
+    {"id": "SEAT_SOC_DISP", "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 20.4, "div": 46,  "add": -6.4, "unit": "percent" }, "name": "State of charge, display", "suggestedMetric": "stateOfCharge"}
   ]},
 { "hdr": "FC00", "rax": "FE007B", "fcm1": true, "dbg": true, "cmd": {"22": "02BD"}, "freq": 1,
   "signals": [
@@ -8245,7 +8281,7 @@
   ]},
 { "hdr": "FC00", "rax": "FE007B", "pri": "17", "tst": "7B", "dbg": true, "cmd": {"22": "1E3E"}, "freq": 1,
   "signals": [
-    {"id": "SEAT_HVBAT_I_DC_2", "path": "Battery", "fmt": { "len": 32, "max": 42948172.950000003, "min": -1500, "div": 100, "add": -1500, "unit": "amps" }, "name": "Battery current, DC, second read"}
+    {"id": "SEAT_HVBAT_I_DC_2", "path": "Battery", "fmt": { "len": 32, "max": 42948172.950000003, "min": -1500, "div": 100, "add": -1500, "unit": "amps" }, "name": "Battery current, DC, alternate"}
   ]},
 { "hdr": "FC00", "rax": "FE007B", "pri": "17", "tst": "7B", "dbg": true, "cmd": {"22": "1E40"}, "freq": 1,
   "signals": [
