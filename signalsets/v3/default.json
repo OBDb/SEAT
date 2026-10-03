@@ -2083,8 +2083,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BA"}, "freq": 15,
   "signals": [
-    {"id": "SEAT_OIL_LEVEL", "path": "Engine", "fmt": { "len": 16, "max": 26.2, "div": 2500, "unit": "centimeters" }, "name": "Oil level"},
-    {"id": "SEAT_OIL_LVL",   "path": "Engine", "fmt": { "len": 16, "max": 262,  "div": 250,  "unit": "unknown"     }, "name": "Oil level"}
+    {"id": "SEAT_OIL_LEVEL", "path": "Engine", "fmt": { "len": 16, "max": 26.2, "div": 2500, "unit": "centimeters" }, "name": "Oil level"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BB"}, "freq": 3600,
   "signals": [
