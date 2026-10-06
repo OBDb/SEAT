@@ -1266,7 +1266,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1023"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_AC_COMP_TQ_V3", "path": "Engine", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "sign": true, "unit": "newtonMeters" }, "name": "Air conditioning compressor torque"}
+    {"id": "SEAT_AC_COMP_TQ_V4", "path": "Engine", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "sign": true, "unit": "newtonMeters" }, "name": "Air conditioning compressor torque"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1024"}, "freq": 1,
   "signals": [
@@ -1716,7 +1716,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1124"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_CAM_SPD", "path": "Movement", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Camshaft speed"}
+    {"id": "SEAT_CAM_SPD",     "path": "Movement", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Camshaft speed"},
+    {"id": "SEAT_CAM_SPD_7E0", "path": "Movement", "fmt": { "len": 16, "max": 16383,    "div": 4, "unit": "rpm" }, "name": "Camshaft speed"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1125"}, "freq": 1,
   "signals": [
@@ -1755,6 +1756,7 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "112D"}, "freq": 1,
   "signals": [
     {"id": "SEAT_SPARK_EFFICIENCY_DEV_V2", "path": "Engine", "fmt": { "len": 8,  "max": 100,                    "mul": 78.1,  "div": 100,                     "unit": "percent" }, "name": "Spark efficiency deviation at part load"},
+    {"id": "SEAT_SPARK_EFFICIENCY_DEV_2",  "path": "Engine", "fmt": { "len": 8,  "max": 199,                    "mul": 781,   "div": 1000,                    "unit": "percent" }, "name": "Spark efficiency deviation at part load"},
     {"id": "SEAT_SEG_AD_MMV_ER_1",         "path": "Engine", "fmt": { "len": 16, "max": 7.8123, "min": -7.8125, "mul": 78123, "div": 327670000, "sign": true, "unit": "percent" }, "name": "SEG_AD_MMV_ER, 1"},
     {"id": "SEAT_SPARK_EFF_DEV",           "path": "Engine", "fmt": { "len": 8,  "max": 199.14,                 "mul": 78.1,  "div": 100,                     "unit": "percent" }, "name": "Spark efficiency deviation at part load"}
   ]},
@@ -3508,7 +3510,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2017"}, "freq": 0.25,
   "signals": [
-    {"id": "SEAT_AC_COMP_TQ_V4", "path": "Engine", "fmt": { "len": 16, "max": 327.67, "min": -327.68, "div": 100, "sign": true, "unit": "newtonMeters" }, "name": "Air conditioning compressor torque"}
+    {"id": "SEAT_AC_COMP_TQ_V5", "path": "Engine", "fmt": { "len": 16, "max": 327.67, "min": -327.68, "div": 100, "sign": true, "unit": "newtonMeters" }, "name": "Air conditioning compressor torque"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2019"}, "freq": 1,
   "signals": [
