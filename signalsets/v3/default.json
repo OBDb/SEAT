@@ -2122,10 +2122,10 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BE"}, "freq": 5,
   "signals": [
     {"id": "SEAT_PQ35_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280.4, "min": -273.1,  "div": 10, "add": -273.1,                                                "unit": "celsius" }, "name": "Oil temperature variant"},
-    {"id": "SEAT_OIL_T_2_RAW",  "path": "Engine", "fmt": { "len": 16, "max": 32767,  "min": -32768,                             "sign": true,                                 "unit": "scalar"  }, "name": "Oil temperature variant, raw"},
-    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 65535,                                                                                           "unit": "scalar"  }, "name": "Engine oil temperature",       "description": "Scaling is unknown, needs further validation."},
-    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 500,    "min": -40,     "div": 10, "add": -273.1,                "nullmin": -40, "nullmax": 500, "unit": "celsius" }, "name": "Engine oil temperature",       "suggestedMetric": "engineOilTemperature"},
-    {"id": "SEAT_PQ46_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280,   "min": -273.15, "div": 10, "add": -273.15,                                               "unit": "celsius" }, "name": "Oil temperature variant",      "suggestedMetric": "engineOilTemperature"},
+    {"id": "SEAT_11BE_RAW",     "path": "Engine", "fmt": { "len": 16, "max": 32767,  "min": -32768,                             "sign": true,                                 "unit": "scalar"  }, "name": "Engine read 11BE, signed raw count"},
+    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 65535,                                                                                           "unit": "scalar"  }, "name": "Engine oil temperature",             "description": "Scaling is unknown, needs further validation."},
+    {"id": "SEAT_EOT_V2",       "path": "Engine", "fmt": { "len": 16, "max": 500,    "min": -40,     "div": 10, "add": -273.1,                "nullmin": -40, "nullmax": 500, "unit": "celsius" }, "name": "Engine oil temperature",             "suggestedMetric": "engineOilTemperature"},
+    {"id": "SEAT_PQ46_OIL_T_2", "path": "Engine", "fmt": { "len": 16, "max": 6280,   "min": -273.15, "div": 10, "add": -273.15,                                               "unit": "celsius" }, "name": "Oil temperature variant",            "suggestedMetric": "engineOilTemperature"},
     {"id": "SEAT_ECM_11BE_RAW", "path": "Engine", "fmt": { "len": 8,  "max": 255,                                                                                             "unit": "scalar"  }, "name": "Engine module 11BE, raw"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BF"}, "freq": 1,
@@ -3054,7 +3054,7 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "162D"}, "freq": 5,
   "signals": [
     {"id": "SEAT_PQ35_FUEL_T",   "path": "Engine", "fmt": { "len": 16, "max": 6280.4,     "min": -273.1, "div": 10, "add": -273.1,                                 "unit": "celsius" }, "name": "Fuel temperature"},
-    {"id": "SEAT_FUEL_T_RAW",    "path": "Engine", "fmt": { "len": 32, "max": 4294967295,                                                                          "unit": "scalar"  }, "name": "Fuel temperature read, raw"},
+    {"id": "SEAT_162D_RAW",      "path": "Engine", "fmt": { "len": 32, "max": 4294967295,                                                                          "unit": "scalar"  }, "name": "Engine read 162D, raw count"},
     {"id": "SEAT_FUEL_T_7E0_V2", "path": "Engine", "fmt": { "len": 16, "max": 300,        "min": -40,    "div": 10, "add": -273.1, "nullmin": -40, "nullmax": 300, "unit": "celsius" }, "name": "Fuel temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "03", "dbg": true, "cmd": {"22": "162F"}, "freq": 1,
